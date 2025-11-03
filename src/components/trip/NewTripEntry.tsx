@@ -100,7 +100,7 @@ export default function NewTripEntry() {
         <button
           disabled={loading || !allFieldsFilled}
           type="submit"
-          className={`mt-4 w-100 flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition
+          className={`mt-4 w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium transition
           ${
             !loading && allFieldsFilled
               ? "bg-blue-600 hover:bg-blue-700 text-white cursor-pointer"
