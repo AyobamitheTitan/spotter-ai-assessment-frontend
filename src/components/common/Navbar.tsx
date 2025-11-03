@@ -15,18 +15,14 @@ export default function Navbar() {
     >
       <div className="flex items-center gap-2">
         <div className="w-3 h-3 rounded-full bg-blue-500" />
-        <h1 className="text-lg font-semibold tracking-wide">Routes and Logs</h1>
+        <h1 className="text-lg font-semibold tracking-wide">
+          <Link to="/"> Routes and Logs</Link>
+        </h1>
       </div>
 
       <ul className="hidden md:flex items-center gap-8 text-sm font-medium">
         <li className="cursor-pointer hover:text-blue-500 transition-colors">
-          Dashboard
-        </li>
-        <li className="cursor-pointer hover:text-blue-500 transition-colors">
-          Trips
-        </li>
-        <li className="cursor-pointer hover:text-blue-500 transition-colors">
-          Reports
+          <Link to="/">Dashboard</Link>
         </li>
       </ul>
 

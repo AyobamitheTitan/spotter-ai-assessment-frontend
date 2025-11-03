@@ -49,14 +49,8 @@ export default function NewTripEntry() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(e);
 
     await submitNewTrip(formData as any);
-    setFormData((prev) => {
-      console.log(prev);
-
-      return { ...prev };
-    });
   };
 
   const allFieldsFilled = Object.values(formData).every(

@@ -1,6 +1,7 @@
 // stores/tripStore.ts
 import axios from "axios";
 import { Store } from "@tanstack/react-store";
+import { toast } from "sonner";
 
 export interface TripStep {
   distance: number; // in meters
@@ -127,10 +128,11 @@ export const tripStore = new Store<TripStore>({
       success: undefined,
     });
     try {
-      const res = await axios.post(`${BASE_API_URL}/api/v1/trips`, data);
-      console.log(res.data);
+      await axios.post(`${BASE_API_URL}/api/v1/trips`, data);
+      toast.success("Trip has been recorded");
     } catch (error) {
       console.log(error);
+      toast.error("Unable to record the trip",{});
     } finally {
       tripStore.setState({ ...tripStore.state, loading: false });
     }

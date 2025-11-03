@@ -8,7 +8,8 @@ import { useRef, useEffect } from "react";
 
 interface TripData {
   geometry: [number, number][];
-  distance: number; // in meters
+  distance: number;
+  steps: Array<{ distance: number; duration: number }>;
   origin: [number, number];
   pickup: [number, number];
   dropoff: [number, number];
@@ -25,7 +26,14 @@ const ELDModal: React.FC<ELDModalProps> = ({ isOpen, onClose, trip }) => {
   if (!isOpen) return null;
   const domain = ["Off Duty", "Sleeper", "Driving", "On Duty"];
   const plotRef = useRef<HTMLDivElement>(null);
-  const eldLogs = generateEldLog({ distance: trip.distance });
+  console.log(trip);
+
+  const eldLogs = generateEldLog({
+    steps: trip.steps,
+    distance: trip.distance,
+  });
+  console.log(eldLogs);
+
   // Convert eldLogs to plot points
   const eldPoints = eldLogs.flatMap((log) => {
     const now = new Date();
