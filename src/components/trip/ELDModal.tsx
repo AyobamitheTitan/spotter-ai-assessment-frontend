@@ -159,6 +159,8 @@ const ELDModal: React.FC<ELDModalProps> = ({ isOpen, onClose, trip }) => {
     <div
       className={`absolute top-0 left-0 w-full h-full flex items-center justify-center z-50`}
     >
+      <div className="absolute inset-0 bg-black opacity-50"></div>
+
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-1 w-11/12 max-w-5xl h-[80vh] relative">
         {/* Close button */}
         <button
