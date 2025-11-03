@@ -16,16 +16,19 @@ import {
 } from "@/components/ui/table";
 import { DataTablePagination } from "./data-table-pagination";
 import { useStore } from "@tanstack/react-store";
-import { themeStore } from "@/store/themeStore";
+import { themeStore } from "@/stores/themeStore";
+import { Loader2 } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  loading: boolean;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  loading,
 }: DataTableProps<TData, TValue>) {
   const { theme } = useStore(themeStore);
 
@@ -71,7 +74,15 @@ export function DataTable<TData, TValue>({
           </TableHeader>
 
           <TableBody>
-            {table.getRowModel().rows?.length ? (
+            {loading ? (
+              <TableRow>
+                <TableCell colSpan={columns.length}>
+                  <div className="flex justify-center items-center h-24">
+                    <Loader2 className="animate-spin text-slate-500" />
+                  </div>
+                </TableCell>
+              </TableRow>
+            ) : table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
