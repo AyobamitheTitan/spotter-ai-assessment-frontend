@@ -5,17 +5,13 @@ export interface EldEvent {
   description: string;
 }
 
-export default function generateEldLog({
-  distance,
-  avgSpeed = 60,
-  fuelingInterval = 1000,
-}: {
+export default function generateEldLog({}: {
   distance: number;
   avgSpeed?: number;
   fuelingInterval?: number;
 }): EldEvent[] {
   // const drivingHours = distance / avgSpeed;
-  const fuelingStops = Math.floor(distance / fuelingInterval);
+  // const fuelingStops = Math.floor(distance / fuelingInterval);
 
   const segments: EldEvent[] = [];
   let currentHour = 6; // Assuming our driver wakes up at 6
@@ -31,8 +27,6 @@ export default function generateEldLog({
     status: "On Duty",
     description: "Pickup / Inspection",
   });
-
-  console.log(fuelingStops);
 
   // for (let i = 0; i < fuelingStops; i++) {
   //   const driveStart = currentHour;
