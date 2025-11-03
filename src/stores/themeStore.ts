@@ -7,15 +7,18 @@ export const themeStore = new Store<{
   theme: Theme;
   toggleTheme: () => void;
 }>({
-  theme: "light",
+  theme: (localStorage.getItem("theme") as Theme) || "light",
   toggleTheme: () => {},
 });
 
 themeStore.setState({
   ...themeStore.state,
-  toggleTheme: () =>
+  toggleTheme: () => {
+    const newTheme = themeStore.state.theme === "light" ? "dark" : "light"
     themeStore.setState({
       ...themeStore.state,
-      theme: themeStore.state.theme === "light" ? "dark" : "light",
-    }),
+      theme: newTheme,
+    });
+    localStorage.setItem("theme", newTheme)
+  },
 });
