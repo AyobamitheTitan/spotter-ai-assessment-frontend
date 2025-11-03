@@ -1,68 +1,56 @@
 export interface EldEvent {
   start: string;
   end: string;
-  status: string;
+  status: "Off Duty" | "Sleeper" | "Driving" | "On Duty";
   description: string;
 }
 
-export default function generateEldLog({}: {
+interface EldInput {
   distance: number;
   avgSpeed?: number;
   fuelingInterval?: number;
-}): EldEvent[] {
-  // const drivingHours = distance / avgSpeed;
-  // const fuelingStops = Math.floor(distance / fuelingInterval);
+  steps: { distance: number; duration: number }[];
+}
 
+export default function generateEldLog({}: EldInput): EldEvent[] {
   const segments: EldEvent[] = [];
-  let currentHour = 6; // Assuming our driver wakes up at 6
+
+  // Start the day at 6:00 AM (driver wakes up)
+  let currentHour = 6;
+
   segments.push({
     start: "00:00",
     end: "06:00",
     status: "Sleeper",
-    description: "Sleeper",
+    description: "Rest (10-hour off duty split)",
   });
+
   segments.push({
     start: "06:00",
     end: "07:00",
     status: "On Duty",
-    description: "Pickup / Inspection",
+    description: "Pickup / Pre-trip Inspection",
   });
+  currentHour = 7;
 
-  // for (let i = 0; i < fuelingStops; i++) {
-  //   const driveStart = currentHour;
-  //   const driveEnd = Math.min(driveStart + fuelingInterval / avgSpeed, 24);
-  //   segments.push({
-  //     start: `${driveStart}:00`,
-  //     end: `${driveEnd}:00`,
-  //     status: "D",
-  //     description: "Driving",
-  //   });
+  if (currentHour + 1 <= 24) {
+    segments.push({
+      start: `${Math.floor(currentHour)}:00`,
+      end: `${Math.floor(currentHour + 1)}:00`,
+      status: "On Duty",
+      description: "Drop-off / Post-trip inspection",
+    });
+    currentHour += 1;
+  }
 
-  //   currentHour = driveEnd;
-  //   if (currentHour < 24) {
-  //     segments.push({
-  //       start: `${currentHour}:00`,
-  //       end: `${currentHour + 0.5}:00`,
-  //       status: "ON",
-  //       description: "Fueling",
-  //     });
-  //     currentHour += 0.5;
-  //   }
-  // }
-
-  segments.push({
-    start: `${Math.floor(currentHour)}:00`,
-    end: `${Math.min(currentHour + 1, 24)}:00`,
-    status: "On Duty",
-    description: "Drop-off",
-  });
-
-  segments.push({
-    start: `${Math.min(currentHour + 1, 24)}:00`,
-    end: "24:00",
-    status: "Off Duty",
-    description: "Off Duty",
-  });
+  if (currentHour < 24) {
+    segments.push({
+      start: `${Math.floor(currentHour)}:00`,
+      end: "24:00",
+      status: "Off Duty",
+      description: "End of shift / Rest",
+    });
+  }
 
   return segments;
 }
