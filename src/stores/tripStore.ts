@@ -79,7 +79,7 @@ export const tripStore = new Store<TripStore>({
     } finally {
       tripStore.setState({
         ...tripStore.state,
-        loadingTrips: false,
+        loadingSingleTrip: false,
       });
     }
   },

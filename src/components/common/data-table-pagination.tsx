@@ -14,7 +14,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useStore } from "@tanstack/react-store";
-import { themeStore } from "@/store/themeStore";
+import { themeStore } from "@/stores/themeStore";
 interface DataTablePaginationProps<TData> {
   table: Table<TData>;
 }

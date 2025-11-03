@@ -4,8 +4,8 @@ import { useStore } from "@tanstack/react-store";
 import { Save, Loader2 } from "lucide-react";
 // import ELDModal from '@/components/ELDModal'
 // import MapModal from '@/components/MapModal'
-import { themeStore } from "@/store/themeStore";
-import { tripStore } from "@/store/tripStore";
+import { themeStore } from "@/stores/themeStore";
+import { tripStore } from "@/stores/tripStore";
 
 const fields = [
   { name: "date", label: "Date", type: "date", placeholder: "" },

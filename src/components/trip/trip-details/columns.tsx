@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { themeStore } from "@/store/themeStore";
+import { themeStore } from "@/stores/themeStore";
 import {
   DropdownMenu,
   DropdownMenuTrigger,

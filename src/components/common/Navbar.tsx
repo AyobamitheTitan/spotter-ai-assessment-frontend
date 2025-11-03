@@ -1,7 +1,7 @@
 // src/components/Navbar.tsx
 import { useStore } from "@tanstack/react-store";
 import { Moon, Sun, PlusCircle } from "lucide-react";
-import { themeStore } from "../../store/themeStore";
+import { themeStore } from "../../stores/themeStore";
 import { Link } from "@tanstack/react-router";
 
 export default function Navbar() {

@@ -1,5 +1,5 @@
 import Trips from "@/components/trip/trip-details/Trips";
-import { themeStore } from "@/store/themeStore";
+import { themeStore } from "@/stores/themeStore";
 import { createFileRoute } from "@tanstack/react-router";
 import { useStore } from "@tanstack/react-store";
 
