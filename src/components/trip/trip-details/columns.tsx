@@ -72,7 +72,9 @@ export function useTripColumns(): ColumnDef<Trip>[] {
                 isDark ? "hover:bg-slate-800" : "hover:bg-slate-50"
               }`}
             >
-              <Link to={`/trips/${row.original.id}`}>View More</Link>
+              <Link to="/trips/$tripId" params={{ tripId: row.original.id }}>
+                View More
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
