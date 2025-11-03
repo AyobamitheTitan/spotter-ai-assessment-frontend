@@ -1,4 +1,4 @@
-// stores/tripStore.ts
+// src/stores/tripStore.ts
 import axios from "axios";
 import { Store } from "@tanstack/react-store";
 import { toast } from "sonner";

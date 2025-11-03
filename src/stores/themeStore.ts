@@ -1,4 +1,4 @@
-// src/store/themeStore.ts
+// src/stores/themeStore.ts
 import { Store } from "@tanstack/react-store";
 
 type Theme = "light" | "dark";
