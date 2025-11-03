@@ -26,13 +26,13 @@ export function DataTablePagination<TData>({
 
   return (
     <div
-      className={`flex items-center justify-between px-2 transition-colors duration-300 ${
+      className={`flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between px-2 transition-colors duration-300 ${
         isDark ? "text-slate-300" : "text-slate-700"
       }`}
     >
       {/* Selected Rows Info */}
       <div
-        className={`flex-1 text-sm ${
+        className={`text-sm text-center sm:text-left ${
           isDark ? "text-slate-400" : "text-muted-foreground"
         }`}
       >
@@ -41,9 +41,9 @@ export function DataTablePagination<TData>({
       </div>
 
       {/* Pagination Controls */}
-      <div className="flex items-center space-x-6 lg:space-x-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-6 lg:space-x-8 w-full sm:w-auto gap-3 sm:gap-0 justify-between">
         {/* Rows per page selector */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-center sm:justify-start space-x-2">
           <p
             className={`text-sm font-medium ${
               isDark ? "text-slate-300" : "text-slate-700"
@@ -85,7 +85,7 @@ export function DataTablePagination<TData>({
 
         {/* Page Info */}
         <div
-          className={`flex w-[100px] items-center justify-center text-sm font-medium ${
+          className={`flex items-center justify-center text-sm font-medium ${
             isDark ? "text-slate-300" : "text-slate-700"
           }`}
         >
@@ -94,11 +94,11 @@ export function DataTablePagination<TData>({
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center justify-center space-x-1 sm:space-x-2">
           <Button
             variant="outline"
             size="icon"
-            className={`hidden size-8 lg:flex transition-colors duration-300 ${
+            className={`size-8 transition-colors duration-300 ${
               isDark
                 ? "border-slate-600 hover:bg-slate-800"
                 : "border-slate-300 hover:bg-slate-100"
@@ -107,7 +107,7 @@ export function DataTablePagination<TData>({
             disabled={!table.getCanPreviousPage()}
           >
             <span className="sr-only">Go to first page</span>
-            <ChevronsLeft />
+            <ChevronsLeft className="size-4" />
           </Button>
 
           <Button
@@ -122,7 +122,7 @@ export function DataTablePagination<TData>({
             disabled={!table.getCanPreviousPage()}
           >
             <span className="sr-only">Go to previous page</span>
-            <ChevronLeft />
+            <ChevronLeft className="size-4" />
           </Button>
 
           <Button
@@ -137,13 +137,13 @@ export function DataTablePagination<TData>({
             disabled={!table.getCanNextPage()}
           >
             <span className="sr-only">Go to next page</span>
-            <ChevronRight />
+            <ChevronRight className="size-4" />
           </Button>
 
           <Button
             variant="outline"
             size="icon"
-            className={`hidden size-8 lg:flex transition-colors duration-300 ${
+            className={`size-8 transition-colors duration-300 ${
               isDark
                 ? "border-slate-600 hover:bg-slate-800"
                 : "border-slate-300 hover:bg-slate-100"
@@ -152,7 +152,7 @@ export function DataTablePagination<TData>({
             disabled={!table.getCanNextPage()}
           >
             <span className="sr-only">Go to last page</span>
-            <ChevronsRight />
+            <ChevronsRight className="size-4" />
           </Button>
         </div>
       </div>
