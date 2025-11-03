@@ -1,4 +1,4 @@
-import { themeStore } from "@/store/themeStore";
+import { themeStore } from "@/stores/themeStore";
 import { useStore } from "@tanstack/react-store";
 import {
   CircleCheckIcon,
