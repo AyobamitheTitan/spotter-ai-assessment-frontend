@@ -1,4 +1,4 @@
-import { themeStore } from "@/store/themeStore";
+import { themeStore } from "@/stores/themeStore";
 import { useStore } from "@tanstack/react-store";
 import { Map, Activity } from "lucide-react";
 import { useState } from "react";
@@ -9,11 +9,25 @@ const buttonBaseClasses =
   "flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-medium border transition-colors";
 
 const buttonThemeClasses = {
-  light: "bg-white border-gray-300 hover:bg-gray-100 text-gray-900",
-  dark: "bg-gray-800 border-gray-700 hover:bg-gray-700 text-white",
+  light: `
+    bg-white border border-gray-300 text-gray-900
+    hover:bg-gray-100
+    disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200 disabled:cursor-not-allowed
+  `,
+  dark: `
+    bg-gray-800 border border-gray-700 text-white
+    hover:bg-gray-700
+    disabled:bg-gray-700 disabled:text-gray-500 disabled:border-gray-600 disabled:cursor-not-allowed
+  `,
 };
 
-export default function TripELDMap({ details }: { details: any }) {
+export default function TripELDMap({
+  details,
+  enabled,
+}: {
+  details: any;
+  enabled: boolean;
+}) {
   const { theme } = useStore(themeStore);
 
   const [isELDOpen, setIsELDOpen] = useState(false);
@@ -24,6 +38,7 @@ export default function TripELDMap({ details }: { details: any }) {
       {/* === Action Buttons Container === */}
       <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
         <button
+          disabled={!enabled}
           onClick={() => setIsELDOpen(true)}
           className={`${buttonBaseClasses} ${theme === "dark" ? buttonThemeClasses.dark : buttonThemeClasses.light}`}
         >
@@ -32,6 +47,7 @@ export default function TripELDMap({ details }: { details: any }) {
         </button>
 
         <button
+          disabled={!enabled}
           onClick={() => setIsMapOpen(true)}
           className={`${buttonBaseClasses} ${theme === "dark" ? buttonThemeClasses.dark : buttonThemeClasses.light}`}
         >
