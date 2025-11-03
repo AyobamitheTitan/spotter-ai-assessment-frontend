@@ -2,7 +2,6 @@ import React from "react";
 import {
   MapContainer,
   TileLayer,
-  Polyline,
   Marker,
   Popup,
 } from "react-leaflet";
