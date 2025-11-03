@@ -1,11 +1,11 @@
-import { tripStore, type TripResponseData } from "@/store/tripStore";
+import { tripStore, type TripResponseData } from "@/stores/tripStore";
 import { useStore } from "@tanstack/react-store";
 import { useTripColumns, type Trip } from "./columns";
 import { DataTable } from "../../common/data-table";
 import { useEffect, useState } from "react";
 
 export default function Trips() {
-  const { getAllTrips } = useStore(tripStore);
+  const { getAllTrips, loadingTrips } = useStore(tripStore);
   const [data, setData] = useState<TripResponseData[]>([]);
   const columns = useTripColumns();
 
@@ -15,7 +15,11 @@ export default function Trips() {
 
   return (
     <div className={`container mx-auto py-10 h-screen w-screen  `}>
-      <DataTable columns={columns} data={data as unknown as Trip[]} />
+      <DataTable
+        loading={loadingTrips}
+        columns={columns}
+        data={data as unknown as Trip[]}
+      />
     </div>
   );
 }
