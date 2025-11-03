@@ -1,10 +1,10 @@
-import generateEldLog, { type EldEvent } from "@/utils/generateELDlogs";
+import generateEldLog from "@/utils/generateELDlogs";
 import * as Plot from "@observablehq/plot";
 import * as d3 from "d3";
 
 import { XIcon } from "lucide-react";
 import type React from "react";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 interface TripData {
   geometry: [number, number][];
@@ -75,11 +75,11 @@ const ELDModal: React.FC<ELDModalProps> = ({ isOpen, onClose, trip }) => {
   const fifteen = d3.timeMinute
     .every(15)
     ?.range(dayExtent[0], dayExtent[1])
-    .filter((d, i) => i % 2);
+    .filter((_, i) => i % 2);
   const thirty = d3.timeMinute
     .every(30)
     ?.range(dayExtent[0], dayExtent[1])
-    .filter((d, i) => i % 2);
+    .filter((_, i) => i % 2);
 
   useEffect(() => {
     if (!plotRef.current) return;

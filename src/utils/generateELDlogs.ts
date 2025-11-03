@@ -14,7 +14,7 @@ export default function generateEldLog({
   avgSpeed?: number;
   fuelingInterval?: number;
 }): EldEvent[] {
-  const drivingHours = distance / avgSpeed;
+  // const drivingHours = distance / avgSpeed;
   const fuelingStops = Math.floor(distance / fuelingInterval);
 
   const segments: EldEvent[] = [];
